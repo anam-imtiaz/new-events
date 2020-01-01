@@ -1,0 +1,120 @@
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+     <div class="container">
+     <div class="row fullscreen align-items-center justify-content-center" >
+         <div class="banner-content col-lg-6 col-md-12">
+             <h1>
+             The Platform To Search Your Favourite Artist.
+             </h1>
+            
+         </div>
+     </div>
+     </div>
+         </section>
+         <section class="facilities-area section-gap" id="browse_artist">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-8 pb-80 header-text">
+                        <h1 style="margin-bottom: 64px;">Browse Artist</h1>
+                        <form class="artist-form">
+                        <mat-form-field class="artist-full-width">
+                            <input matInput placeholder="Search" aria-label="State" [matAutocomplete]="auto" [formControl]="searchArtistCtrl">
+                            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                              <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+                              <ng-container *ngIf="!isLoading">
+                                <mat-option *ngFor="let artistname of filteredArtists" [value]="artistname" (click)="get_artist_info(artistname)">
+                                  <span>{{artistname}}</span>
+                                </mat-option>
+                              </ng-container>
+                            </mat-autocomplete>
+                          </mat-form-field>
+                        </form>
+                    </div>
+                </div>
+                <div class="row" *ngIf="!artist_details">
+                    <div class="col-lg-4 col-md-4 speaker-wrap">
+                        <div class="single-speaker">
+                            <div class="content">
+                                <a href="#" target="_blank">
+                                  <div class="content-overlay"></div>
+                                       <img class="content-image img-fluid d-block mx-auto" src="assets/img/s1.jpg" alt="">
+                                      <div class="content-details fadeIn-bottom"></div>
+                                </a>
+                             </div>
+                        </div>
+                          <h2>Andy Florence</h2>
+                          <p>inappropriate behavior</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 speaker-wrap">
+                        <div class="single-speaker">
+                            <div class="content">
+                                <a href="#" target="_blank">
+                                  <div class="content-overlay"></div>
+                                       <img class="content-image img-fluid d-block mx-auto" src="assets/img/s2.jpg" alt="">
+                                      <div class="content-details fadeIn-bottom"></div>
+                                </a>
+                             </div>
+                        </div>
+                          <h2>Andy Florence</h2>
+                          <p>inappropriate behavior</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 speaker-wrap">
+                        <div class="single-speaker">
+                            <div class="content">
+                                <a href="#" target="_blank">
+                                  <div class="content-overlay"></div>
+                                       <img class="content-image img-fluid d-block mx-auto" src="assets/img/s3.jpg" alt="">
+                                      <div class="content-details fadeIn-bottom"></div>
+                                </a>
+                             </div>
+                        </div>
+                          <h2>Andy Florence</h2>
+                          <p>inappropriate behavior</p>
+                    </div>
+
+                </div>
+                <div class="row no-padding" *ngIf="artist_details">
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="single-events row no-padding" style="width: 1167px;">
+                           
+                            <div class="col-lg-4">
+                                <img src="{{artist_details['image'][2]['#text']}}" alt="" />
+                            </div>
+                            <div target="_blank" class="col-lg-7 details">
+                                <a href="{{artist_details['bio']['links']['link']['href']}}">
+                                    <h4>{{artist_details['name']}}</h4>
+                                </a>
+                                <p>
+                                    {{artist_details['bio']['summary']}}
+                                </p>
+                                <p class="meta"><a target="_blank" href="{{artist_details['bio']['links']['link']['href']}}">Click here to view wiki details</a></p>
+                            </div>
+                        </div>
+                       
+                    </div>
+
+                    <div class="col-lg-6 col-sm-6"></div>
+                    <div class="col-md-8 pb-80 ">
+                        <h2>Top Albums</h2>
+                        
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <div *ngFor="let albums of event_details; let i=index">
+                        <div class="single-events row no-padding" *ngIf="i<5" >
+                        
+                            <div class="col-lg-7 details" >
+                                <a target="_blank" href="{{albums['url']}}">
+                                    <h4>{{albums['name']}}</h4>
+                                </a>
+                                <p><a target="_blank" href="{{albums['url']}}">Click here to view</a></p>
+                                
+                                <p class="meta"><span class="lnr"></span> <span class="likes">PlayCounts:  {{albums['playcount']}}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                     </div>
+
+                   
+                </div>
+            </div>
+        </section>
